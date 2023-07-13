@@ -28,7 +28,7 @@ public enum MassageConst {
     /**
      * コンストラクタ
      */
-    private MessageConst(final String text) {
+    private MassageConst(final String text) {
         this.text = text;
     }
 

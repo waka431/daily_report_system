@@ -40,7 +40,7 @@ import lombok.Setter;
     @NoArgsConstructor //引数なしコンストラクタを自動生成する(Lombok)
     @AllArgsConstructor //全てのクラスフィールドを引数にもつ引数ありコンストラクタを自動生成する(Lombok)
     @Entity
-    public class Employee {
+    public class Employee2 {
 
         /**
          * id

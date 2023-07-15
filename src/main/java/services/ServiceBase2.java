@@ -2,10 +2,10 @@ package services;
 
 import javax.persistence.EntityManager;
 
-import utils.DBUtil;
+import utils.DBUtil2;
 
 public class ServiceBase2 {
-    protected EntityManager em = DBUtil.createEntityManager();
+    protected EntityManager em = DBUtil2.createEntityManager();
 
     /**
      * EntityManagerのクローズ

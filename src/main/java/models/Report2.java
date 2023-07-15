@@ -15,26 +15,26 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import constants.JpaConst;
+import constants.JpaConst2;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = JpaConst.TABLE_REP)
+@Table(name = JpaConst2.TABLE_REP)
 @NamedQueries({
     @NamedQuery(
-            name = JpaConst.Q_REP_GET_ALL,
-            query = JpaConst.Q_REP_GET_ALL_DEF),
+            name = JpaConst2.Q_REP_GET_ALL,
+            query = JpaConst2.Q_REP_GET_ALL_DEF),
     @NamedQuery(
-            name = JpaConst.Q_REP_COUNT,
-            query = JpaConst.Q_REP_COUNT_DEF),
+            name = JpaConst2.Q_REP_COUNT,
+            query = JpaConst2.Q_REP_COUNT_DEF),
     @NamedQuery(
-            name = JpaConst.Q_REP_GET_ALL_MINE,
-            query = JpaConst.Q_REP_GET_ALL_MINE_DEF),
+            name = JpaConst2.Q_REP_GET_ALL_MINE,
+            query = JpaConst2.Q_REP_GET_ALL_MINE_DEF),
     @NamedQuery(
-            name = JpaConst.Q_REP_COUNT_ALL_MINE,
-            query = JpaConst.Q_REP_COUNT_ALL_MINE_DEF)
+            name = JpaConst2.Q_REP_COUNT_ALL_MINE,
+            query = JpaConst2.Q_REP_COUNT_ALL_MINE_DEF)
 })
 
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
@@ -48,7 +48,7 @@ public class Report2 {
      * id
      */
     @Id
-    @Column(name = JpaConst.REP_COL_ID)
+    @Column(name = JpaConst2.REP_COL_ID)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -56,38 +56,38 @@ public class Report2 {
      * 日報を登録した従業員
      */
     @ManyToOne
-    @JoinColumn(name = JpaConst.REP_COL_EMP, nullable = false)
+    @JoinColumn(name = JpaConst2.REP_COL_EMP, nullable = false)
     private Employee2 employee;
 
     /**
      * いつの日報かを示す日付
      */
-    @Column(name = JpaConst.REP_COL_REP_DATE, nullable = false)
+    @Column(name = JpaConst2.REP_COL_REP_DATE, nullable = false)
     private LocalDate reportDate;
 
     /**
      * 日報のタイトル
      */
-    @Column(name = JpaConst.REP_COL_TITLE, length = 255, nullable = false)
+    @Column(name = JpaConst2.REP_COL_TITLE, length = 255, nullable = false)
     private String title;
 
     /**
      * 日報の内容
      */
     @Lob
-    @Column(name = JpaConst.REP_COL_CONTENT, nullable = false)
+    @Column(name = JpaConst2.REP_COL_CONTENT, nullable = false)
     private String content;
 
     /**
      * 登録日時
      */
-    @Column(name = JpaConst.REP_COL_CREATED_AT, nullable = false)
+    @Column(name = JpaConst2.REP_COL_CREATED_AT, nullable = false)
     private LocalDateTime createdAt;
 
     /**
      * 更新日時
      */
-    @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
+    @Column(name = JpaConst2.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
 
 }

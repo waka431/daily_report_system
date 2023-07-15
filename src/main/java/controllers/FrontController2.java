@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import action.ActionBase;
-import action.UnkownAction;
-import constants.ForwardConst;
+import action.ActionBase2;
+import action.UnkownAction2;
+import constants.ForwardConst2;
 
 @WebServlet("/")
 public class FrontController2 extends HttpServlet {
@@ -23,7 +23,7 @@ public class FrontController2 extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ActionBase action = getAction(request,response);
+        ActionBase2 action = getAction(request,response);
 
         action.init(getServletContext(),request,response);
 
@@ -36,19 +36,19 @@ public class FrontController2 extends HttpServlet {
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" }) //コンパイラ警告を抑制
-    private ActionBase getAction(HttpServletRequest request, HttpServletResponse response) {
+    private ActionBase2 getAction(HttpServletRequest request, HttpServletResponse response) {
         Class type = null;
-        ActionBase action = null;
+        ActionBase2 action = null;
         try {
 
             //リクエストからパラメータ"action"の値を取得 (例:"Employee"、"Report")
-            String actionString = request.getParameter(ForwardConst.ACT.getValue());
+            String actionString = request.getParameter(ForwardConst2.ACT.getValue());
 
             //該当するActionオブジェクトを作成 (例:リクエストからパラメータ action=Employee の場合、actions.EmployeeActionオブジェクト)
             type = Class.forName(String.format("actions.%sAction", actionString));
 
             //ActionBaseのオブジェクトにキャスト(例:actions.EmployeeActionオブジェクト→actions.ActionBaseオブジェクト)
-            action = (ActionBase) (type.asSubclass(ActionBase.class)
+            action = (ActionBase2) (type.asSubclass(ActionBase2.class)
                     .getDeclaredConstructor()
                     .newInstance());
 
@@ -57,7 +57,7 @@ public class FrontController2 extends HttpServlet {
 
             //リクエストパラメータに設定されている"action"の値が不正の場合(例:action=xxxxx 等、該当するActionクラスがない場合)
             //エラー処理を行うActionオブジェクトを作成
-            action = new UnkownAction();
+            action = new UnkownAction2();
         }
         return action;
     }

@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import action.views.EmployeeView;
-import constants.AttributeConst;
-import constants.ForwardConst;
+import action.views.EmployeeView2;
+import constants.AttributeConst2;
+import constants.ForwardConst2;
 
 /**
  * Servlet Filter implementation class LoginFilter
@@ -52,41 +52,41 @@ public class LoginFilter2 implements Filter {
             HttpSession session = ((HttpServletRequest) request).getSession();
 
             //クエリパラメータからactionとcommandを取得
-            String action = request.getParameter(ForwardConst.ACT.getValue());
-            String command = request.getParameter(ForwardConst.CMD.getValue());
+            String action = request.getParameter(ForwardConst2.ACT.getValue());
+            String command = request.getParameter(ForwardConst2.CMD.getValue());
 
             //セッションからログインしている従業員の情報を取得
-            EmployeeView ev = (EmployeeView) session.getAttribute(AttributeConst.LOGIN_EMP.getValue());
+            EmployeeView2 ev = (EmployeeView2) session.getAttribute(AttributeConst2.LOGIN_EMP.getValue());
 
             if (ev == null) {
                 //未ログイン
 
-                if (!(ForwardConst.ACT_AUTH.getValue().equals(action)
-                        && (ForwardConst.CMD_SHOW_LOGIN.getValue().equals(command)
-                                || ForwardConst.CMD_LOGIN.getValue().equals(command)))) {
+                if (!(ForwardConst2.ACT_AUTH.getValue().equals(action)
+                        && (ForwardConst2.CMD_SHOW_LOGIN.getValue().equals(command)
+                                || ForwardConst2.CMD_LOGIN.getValue().equals(command)))) {
 
                     //ログインページの表示またはログイン実行以外はログインページにリダイレクト
                     ((HttpServletResponse) response).sendRedirect(
                             contextPath
-                                    + "?action=" + ForwardConst.ACT_AUTH.getValue()
-                                    + "&command=" + ForwardConst.CMD_SHOW_LOGIN.getValue());
+                                    + "?action=" + ForwardConst2.ACT_AUTH.getValue()
+                                    + "&command=" + ForwardConst2.CMD_SHOW_LOGIN.getValue());
                     return;
                 }
             } else {
                 //ログイン済
 
-                if (ForwardConst.ACT_AUTH.getValue().equals(action)) {
+                if (ForwardConst2.ACT_AUTH.getValue().equals(action)) {
                     //認証系Actionを行おうとしている場合
 
-                    if (ForwardConst.CMD_SHOW_LOGIN.getValue().equals(command)) {
+                    if (ForwardConst2.CMD_SHOW_LOGIN.getValue().equals(command)) {
                         //ログインページの表示はトップ画面にリダイレクト
                         ((HttpServletResponse) response).sendRedirect(
                                 contextPath
-                                        + "?action=" + ForwardConst.ACT_TOP.getValue()
-                                        + "&command=" + ForwardConst.CMD_INDEX.getValue());
+                                        + "?action=" + ForwardConst2.ACT_TOP.getValue()
+                                        + "&command=" + ForwardConst2.CMD_INDEX.getValue());
                         return;
 
-                    } else if (ForwardConst.CMD_LOGOUT.getValue().equals(command)) {
+                    } else if (ForwardConst2.CMD_LOGOUT.getValue().equals(command)) {
                         //ログアウトの実施は許可
 
                     } else {

@@ -22,7 +22,7 @@ public class ReportView2 {
     /**
      * 日報を登録した従業員
      */
-    private EmployeeView employee;
+    private EmployeeView2 employee;
 
     /**
      * いつの日報かを示す日付

@@ -3,9 +3,9 @@ package models.validators;
 import java.util.ArrayList;
 import java.util.List;
 
-import action.views.EmployeeView;
-import constants.MassageConst;
-import services.EmployeeService;
+import action.views.EmployeeView2;
+import constants.MassageConst2;
+import services.EmployeeService2;
 
 public class EmployeeValidator2 {
 
@@ -18,7 +18,7 @@ public class EmployeeValidator2 {
      * @return エラーのリスト
      */
     public static List<String> validate(
-            EmployeeService service, EmployeeView ev, Boolean codeDuplicateCheckFlag, Boolean passwordCheckFlag) {
+            EmployeeService2 service, EmployeeView2 ev, Boolean codeDuplicateCheckFlag, Boolean passwordCheckFlag) {
         List<String> errors = new ArrayList<String>();
 
         //社員番号のチェック
@@ -49,11 +49,11 @@ public class EmployeeValidator2 {
      * @param codeDuplicateCheckFlag 社員番号の重複チェックを実施するかどうか(実施する:true 実施しない:false)
      * @return エラーメッセージ
      */
-    private static String validateCode(EmployeeService service, String code, Boolean codeDuplicateCheckFlag) {
+    private static String validateCode(EmployeeService2 service, String code, Boolean codeDuplicateCheckFlag) {
 
         //入力値がなければエラーメッセージを返却
         if (code == null || code.equals("")) {
-            return MassageConst.E_NOEMP_CODE.getMessage();
+            return MassageConst2.E_NOEMP_CODE.getMessage();
         }
 
         if (codeDuplicateCheckFlag) {
@@ -63,7 +63,7 @@ public class EmployeeValidator2 {
 
             //同一社員番号が既に登録されている場合はエラーメッセージを返却
             if (employeesCount > 0) {
-                return MassageConst.E_EMP_CODE_EXIST.getMessage();
+                return MassageConst2.E_EMP_CODE_EXIST.getMessage();
             }
         }
 
@@ -76,7 +76,7 @@ public class EmployeeValidator2 {
      * @param code 社員番号
      * @return 従業員テーブルに登録されている同一社員番号のデータの件数
      */
-    private static long isDuplicateEmployee(EmployeeService service, String code) {
+    private static long isDuplicateEmployee(EmployeeService2 service, String code) {
 
         long employeesCount = service.countByCode(code);
         return employeesCount;
@@ -90,7 +90,7 @@ public class EmployeeValidator2 {
     private static String validateName(String name) {
 
         if (name == null || name.equals("")) {
-            return MassageConst.E_NONAME.getMessage();
+            return MassageConst2.E_NONAME.getMessage();
         }
 
         //入力値がある場合は空文字を返却
@@ -107,7 +107,7 @@ public class EmployeeValidator2 {
 
         //入力チェックを実施 かつ 入力値がなければエラーメッセージを返却
         if (passwordCheckFlag && (password == null || password.equals(""))) {
-            return MassageConst.E_NOPASSWORD.getMessage();
+            return MassageConst2.E_NOPASSWORD.getMessage();
         }
 
         //エラーがない場合は空文字を返却

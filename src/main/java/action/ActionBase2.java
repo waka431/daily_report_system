@@ -11,9 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import constants.AttributeConst;
-import constants.ForwardConst;
-import constants.PropertyConst;
+import constants.AttributeConst2;
+import constants.ForwardConst2;
+import constants.PropertyConst2;
 
 public abstract class ActionBase2 {
     protected ServletContext context;
@@ -55,7 +55,7 @@ public abstract class ActionBase2 {
         try {
 
             //パラメータからcommandを取得
-            String command = request.getParameter(ForwardConst.CMD.getValue());
+            String command = request.getParameter(ForwardConst2.CMD.getValue());
 
             //ommandに該当するメソッドを実行する
             //(例: action=Employee command=show の場合 EmployeeActionクラスのshow()メソッドを実行する)
@@ -68,7 +68,7 @@ public abstract class ActionBase2 {
             //発生した例外をコンソールに表示
             e.printStackTrace();
             //commandの値が不正で実行できない場合エラー画面を呼び出し
-            forward(ForwardConst.FW_ERR_UNKNOWN);
+            forward(ForwardConst2.FW_ERR_UNKNOWN);
         }
 
     }
@@ -79,7 +79,7 @@ public abstract class ActionBase2 {
      * @throws ServletException
      * @throws IOException
      */
-    protected void forward(ForwardConst target) throws ServletException, IOException {
+    protected void forward(ForwardConst2 target) throws ServletException, IOException {
 
         //jspファイルの相対パスを作成
         String forward = String.format("/WEB-INF/views/%s.jsp", target.getValue());
@@ -97,7 +97,7 @@ public abstract class ActionBase2 {
      * @throws ServletException
      * @throws IOException
      */
-    protected void redirect(ForwardConst action, ForwardConst command)
+    protected void redirect(ForwardConst2 action, ForwardConst2 command)
             throws ServletException, IOException {
 
         //URLを構築
@@ -120,12 +120,12 @@ public abstract class ActionBase2 {
     protected boolean checkToken() throws ServletException, IOException {
 
         //パラメータからtokenの値を取得
-        String _token = getRequestParam(AttributeConst.TOKEN);
+        String _token = getRequestParam(AttributeConst2.TOKEN);
 
         if (_token == null || !(_token.equals(getTokenId()))) {
 
             //tokenが設定されていない、またはセッションIDと一致しない場合はエラー画面を表示
-            forward(ForwardConst.FW_ERR_UNKNOWN);
+            forward(ForwardConst2.FW_ERR_UNKNOWN);
 
             return false;
         } else {
@@ -148,7 +148,7 @@ public abstract class ActionBase2 {
      */
     protected int getPage() {
         int page;
-        page = toNumber(request.getParameter(AttributeConst.PAGE.getValue()));
+        page = toNumber(request.getParameter(AttributeConst2.PAGE.getValue()));
         if (page == Integer.MIN_VALUE) {
             page = 1;
         }
@@ -187,7 +187,7 @@ public abstract class ActionBase2 {
      * @param key パラメータ名
      * @return パラメータの値
      */
-    protected String getRequestParam(AttributeConst key) {
+    protected String getRequestParam(AttributeConst2 key) {
         return request.getParameter(key.getValue());
     }
 
@@ -196,7 +196,7 @@ public abstract class ActionBase2 {
      * @param key パラメータ名
      * @param value パラメータの値
      */
-    protected <V> void putRequestScope(AttributeConst key, V value) {
+    protected <V> void putRequestScope(AttributeConst2 key, V value) {
         request.setAttribute(key.getValue(), value);
     }
 
@@ -206,7 +206,7 @@ public abstract class ActionBase2 {
      * @return パラメータの値
      */
     @SuppressWarnings("unchecked")
-    protected <R> R getSessionScope(AttributeConst key) {
+    protected <R> R getSessionScope(AttributeConst2 key) {
         return (R) request.getSession().getAttribute(key.getValue());
     }
 
@@ -215,7 +215,7 @@ public abstract class ActionBase2 {
      * @param key パラメータ名
      * @param value パラメータの値
      */
-    protected <V> void putSessionScope(AttributeConst key, V value) {
+    protected <V> void putSessionScope(AttributeConst2 key, V value) {
         request.getSession().setAttribute(key.getValue(), value);
     }
 
@@ -223,7 +223,7 @@ public abstract class ActionBase2 {
      * セッションスコープから指定された名前のパラメータを除去する
      * @param key パラメータ名
      */
-    protected void removeSessionScope(AttributeConst key) {
+    protected void removeSessionScope(AttributeConst2 key) {
         request.getSession().removeAttribute(key.getValue());
     }
 
@@ -233,7 +233,7 @@ public abstract class ActionBase2 {
      * @return パラメータの値
      */
     @SuppressWarnings("unchecked")
-    protected <R> R getContextScope(PropertyConst key) {
+    protected <R> R getContextScope(PropertyConst2 key) {
         return (R) context.getAttribute(key.getValue());
     }
 

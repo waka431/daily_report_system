@@ -3,7 +3,7 @@ package action.views;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Report;
+import models.Report2;
 
 /**
  * 日報データのDTOモデル⇔Viewモデルの変換を行うクラス
@@ -16,10 +16,10 @@ public class ReportConverter2 {
      * @param rv ReportViewのインスタンス
      * @return Reportのインスタンス
      */
-    public static Report toModel(ReportView rv) {
-        return new Report(
+    public static Report2 toModel(ReportView2 rv) {
+        return new Report2(
                 rv.getId(),
-                EmployeeConverter.toModel(rv.getEmployee()),
+                EmployeeConverter2.toModel(rv.getEmployee()),
                 rv.getReportDate(),
                 rv.getTitle(),
                 rv.getContent(),
@@ -32,15 +32,15 @@ public class ReportConverter2 {
      * @param r Reportのインスタンス
      * @return ReportViewのインスタンス
      */
-    public static ReportView toView(Report r) {
+    public static ReportView2 toView(Report2 r) {
 
         if (r == null) {
             return null;
         }
 
-        return new ReportView(
+        return new ReportView2(
                 r.getId(),
-                EmployeeConverter.toView(r.getEmployee()),
+                EmployeeConverter2.toView(r.getEmployee()),
                 r.getReportDate(),
                 r.getTitle(),
                 r.getContent(),
@@ -53,10 +53,10 @@ public class ReportConverter2 {
      * @param list DTOモデルのリスト
      * @return Viewモデルのリスト
      */
-    public static List<ReportView> toViewList(List<Report> list) {
-        List<ReportView> evs = new ArrayList<>();
+    public static List<ReportView2> toViewList(List<Report2> list) {
+        List<ReportView2> evs = new ArrayList<>();
 
-        for (Report r : list) {
+        for (Report2 r : list) {
             evs.add(toView(r));
         }
 
@@ -68,9 +68,9 @@ public class ReportConverter2 {
      * @param r DTOモデル(コピー先)
      * @param rv Viewモデル(コピー元)
      */
-    public static void copyViewToModel(Report r, ReportView rv) {
+    public static void copyViewToModel(Report2 r, ReportView2 rv) {
         r.setId(rv.getId());
-        r.setEmployee(EmployeeConverter.toModel(rv.getEmployee()));
+        r.setEmployee(EmployeeConverter2.toModel(rv.getEmployee()));
         r.setReportDate(rv.getReportDate());
         r.setTitle(rv.getTitle());
         r.setContent(rv.getContent());

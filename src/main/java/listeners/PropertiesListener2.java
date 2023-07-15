@@ -35,7 +35,7 @@ public class PropertiesListener2 implements ServletContextListener {
 
         //プロパティファイルを読み込み、アプリケーションスコープに設定する
         try {
-            InputStream is = PropertiesListener.class.getClassLoader().getResourceAsStream("application.properties");
+            InputStream is = PropertiesListener2.class.getClassLoader().getResourceAsStream("application.properties");
 
             Properties properties = new Properties();
             properties.load(is);

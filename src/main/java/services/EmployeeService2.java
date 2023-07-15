@@ -5,30 +5,30 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
-import action.views.EmployeeConverter;
-import action.views.EmployeeView;
-import constants.JpaConst;
+import action.views.EmployeeConverter2;
+import action.views.EmployeeView2;
+import constants.JpaConst2;
 import models.Employee2;
-import models.validators.EmployeeValidator;
-import utils.EncryptUtil;
+import models.validators.EmployeeValidator2;
+import utils.EncryptUtil2;
 
 /**
  * 従業員テーブルの操作に関わる処理を行うクラス
  */
-public class EmployeeService2 extends ServiceBase {
+public class EmployeeService2 extends ServiceBase2 {
 
     /**
      * 指定されたページ数の一覧画面に表示するデータを取得し、EmployeeViewのリストで返却する
      * @param page ページ数
      * @return 表示するデータのリスト
      */
-    public List<EmployeeView> getPerPage(int page) {
-        List<Employee2> employees = em.createNamedQuery(JpaConst.Q_EMP_GET_ALL, Employee2.class)
-                .setFirstResult(JpaConst.ROW_PER_PAGE * (page - 1))
-                .setMaxResults(JpaConst.ROW_PER_PAGE)
+    public List<EmployeeView2> getPerPage(int page) {
+        List<Employee2> employees = em.createNamedQuery(JpaConst2.Q_EMP_GET_ALL, Employee2.class)
+                .setFirstResult(JpaConst2.ROW_PER_PAGE * (page - 1))
+                .setMaxResults(JpaConst2.ROW_PER_PAGE)
                 .getResultList();
 
-        return EmployeeConverter.toViewList(employees);
+        return EmployeeConverter2.toViewList(employees);
     }
 
     /**
@@ -36,7 +36,7 @@ public class EmployeeService2 extends ServiceBase {
      * @return 従業員テーブルのデータの件数
      */
     public long countAll() {
-        long empCount = (long) em.createNamedQuery(JpaConst.Q_EMP_COUNT, Long.class)
+        long empCount = (long) em.createNamedQuery(JpaConst2.Q_EMP_COUNT, Long.class)
                 .getSingleResult();
 
         return empCount;
@@ -49,22 +49,22 @@ public class EmployeeService2 extends ServiceBase {
      * @param pepper pepper文字列
      * @return 取得データのインスタンス 取得できない場合null
      */
-    public EmployeeView findOne(String code, String plainPass, String pepper) {
+    public EmployeeView2 findOne(String code, String plainPass, String pepper) {
         Employee2 e = null;
         try {
             //パスワードのハッシュ化
-            String pass = EncryptUtil.getPasswordEncrypt(plainPass, pepper);
+            String pass = EncryptUtil2.getPasswordEncrypt(plainPass, pepper);
 
             //社員番号とハッシュ化済パスワードを条件に未削除の従業員を1件取得する
-            e = em.createNamedQuery(JpaConst.Q_EMP_GET_BY_CODE_AND_PASS, Employee2.class)
-                    .setParameter(JpaConst.JPQL_PARM_CODE, code)
-                    .setParameter(JpaConst.JPQL_PARM_PASSWORD, pass)
+            e = em.createNamedQuery(JpaConst2.Q_EMP_GET_BY_CODE_AND_PASS, Employee2.class)
+                    .setParameter(JpaConst2.JPQL_PARM_CODE, code)
+                    .setParameter(JpaConst2.JPQL_PARM_PASSWORD, pass)
                     .getSingleResult();
 
         } catch (NoResultException ex) {
         }
 
-        return EmployeeConverter.toView(e);
+        return EmployeeConverter2.toView(e);
 
     }
 
@@ -73,9 +73,9 @@ public class EmployeeService2 extends ServiceBase {
      * @param id
      * @return 取得データのインスタンス
      */
-    public EmployeeView findOne(int id) {
-        Employee e = findOneInternal(id);
-        return EmployeeConverter.toView(e);
+    public EmployeeView2 findOne(int id) {
+        Employee2 e = findOneInternal(id);
+        return EmployeeConverter2.toView(e);
     }
 
     /**
@@ -86,8 +86,8 @@ public class EmployeeService2 extends ServiceBase {
     public long countByCode(String code) {
 
         //指定した社員番号を保持する従業員の件数を取得する
-        long employees_count = (long) em.createNamedQuery(JpaConst.Q_EMP_COUNT_REGISTERED_BY_CODE, Long.class)
-                .setParameter(JpaConst.JPQL_PARM_CODE, code)
+        long employees_count = (long) em.createNamedQuery(JpaConst2.Q_EMP_COUNT_REGISTERED_BY_CODE, Long.class)
+                .setParameter(JpaConst2.JPQL_PARM_CODE, code)
                 .getSingleResult();
         return employees_count;
     }
@@ -98,10 +98,10 @@ public class EmployeeService2 extends ServiceBase {
      * @param pepper pepper文字列
      * @return バリデーションや登録処理中に発生したエラーのリスト
      */
-    public List<String> create(EmployeeView ev, String pepper) {
+    public List<String> create(EmployeeView2 ev, String pepper) {
 
         //パスワードをハッシュ化して設定
-        String pass = EncryptUtil.getPasswordEncrypt(ev.getPassword(), pepper);
+        String pass = EncryptUtil2.getPasswordEncrypt(ev.getPassword(), pepper);
         ev.setPassword(pass);
 
         //登録日時、更新日時は現在時刻を設定する
@@ -110,7 +110,7 @@ public class EmployeeService2 extends ServiceBase {
         ev.setUpdatedAt(now);
 
         //登録内容のバリデーションを行う
-        List<String> errors = EmployeeValidator.validate(this, ev, true, true);
+        List<String> errors = EmployeeValidator2.validate(this, ev, true, true);
 
         //バリデーションエラーがなければデータを登録する
         if (errors.size() == 0) {
@@ -127,10 +127,10 @@ public class EmployeeService2 extends ServiceBase {
      * @param pepper pepper文字列
      * @return バリデーションや更新処理中に発生したエラーのリスト
      */
-    public List<String> update(EmployeeView ev, String pepper) {
+    public List<String> update(EmployeeView2 ev, String pepper) {
 
         //idを条件に登録済みの従業員情報を取得する
-        EmployeeView savedEmp = findOne(ev.getId());
+        EmployeeView2 savedEmp = findOne(ev.getId());
 
         boolean validateCode = false;
         if (!savedEmp.getCode().equals(ev.getCode())) {
@@ -151,7 +151,7 @@ public class EmployeeService2 extends ServiceBase {
 
             //変更後のパスワードをハッシュ化し設定する
             savedEmp.setPassword(
-                    EncryptUtil.getPasswordEncrypt(ev.getPassword(), pepper));
+                    EncryptUtil2.getPasswordEncrypt(ev.getPassword(), pepper));
         }
 
         savedEmp.setName(ev.getName()); //変更後の氏名を設定する
@@ -162,7 +162,7 @@ public class EmployeeService2 extends ServiceBase {
         savedEmp.setUpdatedAt(today);
 
         //更新内容についてバリデーションを行う
-        List<String> errors = EmployeeValidator.validate(this, savedEmp, validateCode, validatePass);
+        List<String> errors = EmployeeValidator2.validate(this, savedEmp, validateCode, validatePass);
 
         //バリデーションエラーがなければデータを更新する
         if (errors.size() == 0) {
@@ -180,14 +180,14 @@ public class EmployeeService2 extends ServiceBase {
     public void destroy(Integer id) {
 
         //idを条件に登録済みの従業員情報を取得する
-        EmployeeView savedEmp = findOne(id);
+        EmployeeView2 savedEmp = findOne(id);
 
         //更新日時に現在時刻を設定する
         LocalDateTime today = LocalDateTime.now();
         savedEmp.setUpdatedAt(today);
 
         //論理削除フラグをたてる
-        savedEmp.setDeleteFlag(JpaConst.EMP_DEL_TRUE);
+        savedEmp.setDeleteFlag(JpaConst2.EMP_DEL_TRUE);
 
         //更新処理を行う
         update(savedEmp);
@@ -205,7 +205,7 @@ public class EmployeeService2 extends ServiceBase {
 
         boolean isValidEmployee = false;
         if (code != null && !code.equals("") && plainPass != null && !plainPass.equals("")) {
-            EmployeeView ev = findOne(code, plainPass, pepper);
+            EmployeeView2 ev = findOne(code, plainPass, pepper);
 
             if (ev != null && ev.getId() != null) {
 
@@ -234,10 +234,10 @@ public class EmployeeService2 extends ServiceBase {
      * @param ev 従業員データ
      * @return 登録結果(成功:true 失敗:false)
      */
-    private void create(EmployeeView ev) {
+    private void create(EmployeeView2 ev) {
 
         em.getTransaction().begin();
-        em.persist(EmployeeConverter.toModel(ev));
+        em.persist(EmployeeConverter2.toModel(ev));
         em.getTransaction().commit();
 
     }
@@ -246,11 +246,11 @@ public class EmployeeService2 extends ServiceBase {
      * 従業員データを更新する
      * @param ev 画面から入力された従業員の登録内容
      */
-    private void update(EmployeeView ev) {
+    private void update(EmployeeView2 ev) {
 
         em.getTransaction().begin();
         Employee2 e = findOneInternal(ev.getId());
-        EmployeeConverter.copyViewToModel(e, ev);
+        EmployeeConverter2.copyViewToModel(e, ev);
         em.getTransaction().commit();
 
     }

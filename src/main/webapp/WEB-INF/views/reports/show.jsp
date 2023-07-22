@@ -40,6 +40,13 @@
             </tbody>
         </table>
 
+        <c:if test="${sessionScope.login_employee.id != report.employee.id}">
+          <div class="text-align-center">
+          <button type="submit">いいね</button>
+          </div>
+        </c:if>
+
+
         <c:if test="${sessionScope.login_employee.id == report.employee.id}">
             <p>
                 <a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>

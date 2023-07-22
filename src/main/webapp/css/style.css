@@ -155,4 +155,6 @@ pre {
 h3 {
     font-size: larger;
 }
-
+.text-align-center{
+    text-align:right;
+}

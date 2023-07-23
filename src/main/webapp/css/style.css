@@ -156,9 +156,12 @@ h3 {
     font-size: larger;
 }
 
+.example5{
+   padding:5px;
+}
 .reaction{
-    margin:000 auto;
-    width:60px;
+    margin-left:92%;
+    width:70px;
     height:50px;
     background:#aaa;
     color:#fff;
@@ -171,7 +174,7 @@ h3 {
 .checkbox{
     display:none;
 }
-.chekcbox:checked+.reaction{
+.checkbox:checked+.reaction{
     background:#1ab33a;
 }
 .checkbox:checked+.reaction:before{

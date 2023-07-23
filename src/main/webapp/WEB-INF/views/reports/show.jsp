@@ -41,8 +41,10 @@
         </table>
 
         <c:if test="${sessionScope.login_employee.id != report.employee.id}">
+          <div class="example5" style="padding;5px">
           <input type="checkbox" id="reaction01" class="checkbox">
           <label for="reaction01" class="reaction"></label>
+          </div>
         </c:if>
 
 

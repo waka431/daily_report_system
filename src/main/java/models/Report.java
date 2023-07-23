@@ -90,4 +90,10 @@ public class Report {
     @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
 
+
+    //いいねフラグ
+    @Column(name = JpaConst.REP_COL_REACTION_FLAG, nullable = false)
+    private Integer reactionflag;
+
+
 }

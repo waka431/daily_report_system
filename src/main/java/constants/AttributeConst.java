@@ -36,6 +36,10 @@ public enum AttributeConst {
     DEL_FLAG_TRUE(1),
     DEL_FLAG_FALSE(0),
 
+    //いいねフラグ
+    RACT_FLAG_TRUE(1),
+    RACT_FLAG_FALSE(0),
+
     //日報管理
     REPORT("report"),
     REPORTS("reports"),

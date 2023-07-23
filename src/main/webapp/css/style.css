@@ -157,14 +157,11 @@ h3 {
 }
 
 .reaction{
-    display:flex;
-    align-items:right;
-    justify-content:right;
-    width:36px;
-    height:36px;
+    margin:000 auto;
+    width:60px;
+    height:50px;
     background:#aaa;
     color:#fff;
-    border-radius:50%;
     font-size:1.0rem;
     cursor:pointer;
     }

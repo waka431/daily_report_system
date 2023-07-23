@@ -155,6 +155,28 @@ pre {
 h3 {
     font-size: larger;
 }
-.text-align-center{
-    text-align:right;
+
+.reaction{
+    display:flex;
+    align-items:right;
+    justify-content:right;
+    width:36px;
+    height:36px;
+    background:#aaa;
+    color:#fff;
+    border-radius:50%;
+    font-size:1.0rem;
+    cursor:pointer;
+    }
+.reaction:before{
+    content:'いいね';
+}
+.checkbox{
+    display:none;
+}
+.chekcbox:checked+.reaction{
+    background:#1ab33a;
+}
+.checkbox:checked+.reaction:before{
+    content:'いいね済み';
 }

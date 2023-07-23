@@ -41,11 +41,8 @@
         </table>
 
         <c:if test="${sessionScope.login_employee.id != report.employee.id}">
-          <div class="reaction">
-          <input type="checkbox" checkde id="1" name="reaction"><label for="1">いいね</label>
-          <input type="checkbox" id="2" name="reaction"><label for="2">いいね</label>
-          <input type="checkbox" id="3" name="reaction"><label for="3">いいね</label>
-          </div>
+          <input type="checkbox" id="reaction01" class="checkbox">
+          <label for="reaction01" class="reaction"></label>
         </c:if>
 
 

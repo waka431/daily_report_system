@@ -90,6 +90,12 @@ public class Report {
     @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
 
+    /**
+     * いいねされたレポートがどうか（未いいね：0、いいね済み：1）
+     */
+    @Column(name = JpaConst.REP_COL_REACTION_FLAG, nullable = false)
+    private Integer reactFlag;
+
 
 
 }

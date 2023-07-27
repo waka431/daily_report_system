@@ -153,7 +153,23 @@ public class ReportService extends ServiceBase {
         em.getTransaction().commit();
 
     }
-   
+    /**
+     * idを条件にレポートにいいねをする
+     * @param id
+     */
+    public void reaction(Integer id) {
+
+        //idを条件に登録済みのレポートを取情報を得する
+        ReportView savedRep = findOne(id);
+
+        //いいねフラグをたてる
+        savedRep.setReactFlag(JpaConst.REP_RAC_TRUE);
+
+        //更新処理を行う
+        update(savedRep);
+
+    }
+
 
 
 

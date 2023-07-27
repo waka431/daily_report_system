@@ -113,7 +113,10 @@ public class ReportAction extends ActionBase {
                     getRequestParam(AttributeConst.REP_TITLE),
                     getRequestParam(AttributeConst.REP_CONTENT),
                     null,
+                    null,
                     null);
+
+
 
             //日報情報登録
             List<String> errors = service.create(rv);
@@ -139,6 +142,20 @@ public class ReportAction extends ActionBase {
             }
         }
     }
+
+    /**
+     * いいねフラグを立てる
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void reaction() throws ServletException, IOException{
+
+//idを条件にレポートデータにいいねフラグを立てる
+            service.reaction(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+
+        }
+
     /**
      * 詳細画面を表示する
      * @throws ServletException

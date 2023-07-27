@@ -49,6 +49,10 @@ public class ReportView {
      */
     private LocalDateTime updatedAt;
 
-    
+    //いいねされたレポートかどうか（未いいね：0、いいね済み：1）
+
+   private Integer reactFlag;
+
+
 
 }

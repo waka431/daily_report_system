@@ -3,6 +3,8 @@ package action.views;
 import java.util.ArrayList;
 import java.util.List;
 
+import constants.AttributeConst;
+import constants.JpaConst;
 import models.Report;
 
 /**
@@ -24,7 +26,12 @@ public class ReportConverter {
                 rv.getTitle(),
                 rv.getContent(),
                 rv.getCreatedAt(),
-                rv.getUpdatedAt());
+                rv.getUpdatedAt(),
+                rv.getReactFlag() ==null
+                ? null
+                : rv.getReactFlag() ==AttributeConst.REACTION_FLAG_TRUE.getIntegerValue()
+                                        ? JpaConst.REP_RAC_TRUE
+                                        : JpaConst.REP_RAC_FALSE);
     }
 
     /**
@@ -45,7 +52,12 @@ public class ReportConverter {
                 r.getTitle(),
                 r.getContent(),
                 r.getCreatedAt(),
-                r.getUpdatedAt());
+                r.getUpdatedAt(),
+                r.getReactFlag() ==null
+                ? null
+                : r.getReactFlag() == JpaConst.REP_RAC_TRUE
+                                       ? AttributeConst.REACTION_FLAG_TRUE.getIntegerValue()
+                                       : AttributeConst.REACTION_FLAG_FALSE.getIntegerValue());
     }
 
     /**
@@ -74,6 +86,7 @@ public class ReportConverter {
         r.setReportDate(rv.getReportDate());
         r.setTitle(rv.getTitle());
         r.setContent(rv.getContent());
+        r.setReactFlag(rv.getReactFlag());
         r.setCreatedAt(rv.getCreatedAt());
 
 

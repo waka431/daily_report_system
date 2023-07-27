@@ -6,6 +6,7 @@
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="commRac" value="${ForwardConst.CMD_REACTION.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -40,11 +41,11 @@
             </tbody>
         </table>
 
+        <form method="POST" action="<c:url value='?action=${action}&command=${commRac}' />">
         <c:if test="${sessionScope.login_employee.id != report.employee.id}">
-          <div class="example5" style="padding;5px">
-          <input type="checkbox" id="reaction01" class="checkbox">
-          <label for="reaction01" class="reaction"></label>
-          </div>
+          <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
+          <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+          <button type="submit">いいね！</button>
         </c:if>
 
 

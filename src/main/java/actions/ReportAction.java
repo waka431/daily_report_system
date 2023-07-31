@@ -114,7 +114,7 @@ public class ReportAction extends ActionBase {
                     getRequestParam(AttributeConst.REP_CONTENT),
                     null,
                     null,
-                    null);
+                    AttributeConst. REACTION_FLAG_FALSE.getIntegerValue());
 
 
 
@@ -152,6 +152,8 @@ public class ReportAction extends ActionBase {
 
 //idを条件にレポートデータにいいねフラグを立てる
             service.reaction(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
 
 
         }

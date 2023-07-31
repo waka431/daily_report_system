@@ -93,8 +93,8 @@ public class Report {
     /**
      * いいねされたレポートがどうか（未いいね：0、いいね済み：1）
      */
-    @Column(name = JpaConst.REP_COL_REACTION_FLAG, nullable = false)
-    private Integer reactFlag;
+    @Column(name = JpaConst.REP_COL_REACTION_FLAG,nullable = false)
+    private Integer reactFlag ;
 
 
 

@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="constants.AttributeConst" %>
 <%@ page import="constants.ForwardConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
-<c:set var="commRac" value="${ForwardConst.CMD_REACTION.getValue()}" />
+<c:set var="commRac" value="${ForwardConst. CMD_REACTION.getValue()}" />
+<c:set var="action" value="${ForwardConst.ACT_REP.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -47,6 +49,7 @@
           <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
           <button type="submit">いいね！</button>
         </c:if>
+        </form>
 
 
         <c:if test="${sessionScope.login_employee.id == report.employee.id}">

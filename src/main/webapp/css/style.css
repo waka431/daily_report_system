@@ -156,11 +156,21 @@ h3 {
     font-size: larger;
 }
 
-button2 {
-    font-size: 14px;
-    padding: 5px 10px;
-    background-color:#000;
+reaction{
+    display: block;
+    width: 150px;
+    background: #c8eac3;
+    color: #000;
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    cursor: pointer;
 }
-button:hover{
-    background-color:#ff8000;
+reaction:hover{
+    background: #1a720d;
+    color: #FFF;
 }
+

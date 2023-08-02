@@ -162,8 +162,15 @@ public class ReportService extends ServiceBase {
         //idを条件に登録済みのレポートを取情報を得する
         ReportView savedRep = findOne(id);
 
+
         //いいねフラグをたてる
-        savedRep.setReactFlag(JpaConst.REP_RAC_TRUE);
+            if(savedRep.getReactFlag()==JpaConst.REP_RAC_FALSE) {
+            savedRep.setReactFlag(JpaConst.REP_RAC_TRUE);
+            }else {
+                savedRep.setReactFlag(JpaConst.REP_RAC_FALSE);
+
+            }
+
 
         //更新処理を行う
         update(savedRep);

@@ -96,6 +96,10 @@ public class Report {
     @Column(name = JpaConst.REP_COL_REACTION_FLAG,nullable = false)
     private Integer reactFlag ;
 
+    //いいね登録日時
+    @Column(name = JpaConst.REP_COL_REACT_CREATED_AT)
+    private LocalDateTime reactAT;
+
 
 
 }

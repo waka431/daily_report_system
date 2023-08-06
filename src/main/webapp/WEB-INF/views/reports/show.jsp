@@ -40,14 +40,27 @@
                     <fmt:parseDate value="${report.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
                     <td><fmt:formatDate value="${updateDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
+                <tr>
+                   <th>いいね！</th>
+                    <fmt:parseDate value="${report.reactAT}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="reactDay" type="date" />
+                    <td>
+                     <c:choose>
+                        <c:when test ="${report.reactFlag == AttributeConst.REACTION_FLAG_TRUE.getIntegerValue()}">
+                        <fmt:formatDate value="${reactDay}" pattern="yyyy-MM-dd HH:mm:ss" />
+                        </c:when>
+                        <c:otherwise>
+                        -
+                        </c:otherwise>
+                        </c:choose>
+                        </td>
+                </tr>
             </tbody>
         </table>
-
         <form method="POST" action="<c:url value='?action=${action}&command=${commRac}' />">
         <c:if test="${sessionScope.login_employee.id != report.employee.id}">
           <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
           <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
-          <button type="submit">いいね！</button>
+          <input type ="image" name ="submit" src="images/reaction.png" alt="いいね！">
         </c:if>
         </form>
 

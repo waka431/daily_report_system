@@ -171,9 +171,12 @@ public class ReportService extends ServiceBase {
 
             }
 
+            //更新日時に現在時刻を設定する
+            LocalDateTime today = LocalDateTime.now();
+            savedRep.setReactAT(today);
 
-        //更新処理を行う
-        update(savedRep);
+            //更新処理を行う
+             update(savedRep);
 
     }
 

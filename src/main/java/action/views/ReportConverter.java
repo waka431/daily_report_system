@@ -31,7 +31,8 @@ public class ReportConverter {
                 ? null
                 : rv.getReactFlag() ==AttributeConst.REACTION_FLAG_TRUE.getIntegerValue()
                                         ? JpaConst.REP_RAC_TRUE
-                                        : JpaConst.REP_RAC_FALSE);
+                                        : JpaConst.REP_RAC_FALSE,
+                rv.getReactAT());
     }
 
     /**
@@ -57,7 +58,8 @@ public class ReportConverter {
                 ? null
                 : r.getReactFlag() == JpaConst.REP_RAC_TRUE
                                        ? AttributeConst.REACTION_FLAG_TRUE.getIntegerValue()
-                                       : AttributeConst.REACTION_FLAG_FALSE.getIntegerValue());
+                                       : AttributeConst.REACTION_FLAG_FALSE.getIntegerValue(),
+                r.getReactAT());
     }
 
     /**
@@ -88,7 +90,8 @@ public class ReportConverter {
         r.setContent(rv.getContent());
         r.setReactFlag(rv.getReactFlag());
         r.setCreatedAt(rv.getCreatedAt());
-
+        r.setUpdatedAt(rv.getUpdatedAt());
+        r.setReactAT(rv.getReactAT());
 
     }
 

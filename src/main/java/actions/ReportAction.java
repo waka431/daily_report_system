@@ -114,7 +114,8 @@ public class ReportAction extends ActionBase {
                     getRequestParam(AttributeConst.REP_CONTENT),
                     null,
                     null,
-                    AttributeConst. REACTION_FLAG_FALSE.getIntegerValue());
+                    AttributeConst. REACTION_FLAG_FALSE.getIntegerValue(),
+                    null);
 
 
 

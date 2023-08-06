@@ -53,6 +53,8 @@ public class ReportView {
 
    private Integer reactFlag;
 
+   private LocalDateTime reactAT;
+
 
 
 }

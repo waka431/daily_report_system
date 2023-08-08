@@ -58,6 +58,7 @@
         </table>
         <form method="POST" action="<c:url value='?action=${action}&command=${commRac}' />">
         <c:if test="${sessionScope.login_employee.id != report.employee.id}">
+          <br />
           <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
           <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
           <input type ="image" name ="submit" src="images/reaction.png" alt="いいね！">

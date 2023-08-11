@@ -37,6 +37,14 @@ public interface JpaConst {
     String REP_COL_REACT_CREATED_AT = "react_at"; //いいね登録日時
     int REP_RAC_TRUE = 1; //いいねフラグON
     int REP_RAC_FALSE = 0; //いいねフラグOFF
+    
+    //フォローテーブル
+    String TABLE_FOLLOW ="follows";//フォローテーブル
+    //フォローテーブルカラム
+    String FOW_COL_ID="follow_id";
+    String FOW_COL_EMP_ID="main"; //フォローする従業員のID
+    String FOW_COL_SEE_ID="follower";//フォローしている従業員のID
+    
 
 
     //Entity名

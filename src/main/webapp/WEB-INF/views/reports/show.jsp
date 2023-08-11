@@ -64,8 +64,14 @@
           <input type ="image" name ="submit" src="images/reaction.png" alt="いいね！">
         </c:if>
         </form>
-
-
+ 
+          <c:if test="${sessionScope.login_employee.id != report.employee.id}">
+          <br />
+          <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
+          <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+          <button type="submit">フォロー</button>
+        </c:if>
+         
         <c:if test="${sessionScope.login_employee.id == report.employee.id}">
             <p>
                 <a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>

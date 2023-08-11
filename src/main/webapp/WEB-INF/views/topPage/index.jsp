@@ -39,6 +39,8 @@
                 </c:forEach>
             </tbody>
         </table>
+        
+        <div class="forow" align="right"></div><a href="<c:url value='?action=${actRep}&command=${commShow}' />">フォロワー一覧</a></div>
 
         <div id="pagination">
             （全 ${reports_count} 件）<br />

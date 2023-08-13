@@ -47,7 +47,11 @@ public enum AttributeConst {
     REP_ID("id"),
     REP_DATE("report_date"),
     REP_TITLE("title"),
-    REP_CONTENT("content_msg");
+    REP_CONTENT("content_msg"),
+    REP_EM("report_employee_id"),//追加
+
+    //フォロー機能
+    MAIN_ID("main_id");//追加
 
 
 

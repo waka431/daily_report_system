@@ -32,16 +32,16 @@ public class FollowService extends ServiceBase{
     }
 
     //ログインしている従業員を元にフォローされている従業員を取得
-    public List<FollowView> getFollowViewList(int main) {
+    public List<FollowView> getFollowViewList(int id) {
             List<Follow> follows = em.createNamedQuery(JpaConst.Q_EMP_GET_FOLLOW, Follow.class)
-                    .setParameter(JpaConst.JPQL_PARM_ID, main)
+                    .setParameter(JpaConst.JPQL_PARM_ID, id)
                     .getResultList();
 
             return FollowConverter.toViewList(follows);
         }
 
 
-
+//フォローされている従業員のを元に従業員情報を取得したい
     public List<EmployeeView> converter(FollowView ff){
         List<Employee> followers = em.createNamedQuery(JpaConst.Q_EMP_GET_ALL_F, Employee.class)
                                         .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, ff)
@@ -49,7 +49,7 @@ public class FollowService extends ServiceBase{
         return EmployeeConverter.toViewList(followers);
             }
     /**
-     * 指定した従業員が作成した日報データを、指定されたページ数の一覧画面に表示する分取得しReportViewのリストで返却する
+     * 指定した従業員がフォローした従業員データを、指定されたページ数の一覧画面に表示する分取得しEmployeeViewのリストで返却する
      * @param employee 従業員
      * @param page ページ数
      * @return 一覧画面に表示するデータのリスト
@@ -64,24 +64,29 @@ public class FollowService extends ServiceBase{
         return EmployeeConverter.toViewList(followers);
     }
 
-
-
-
     /**
-     * 指定した従業員が作成した日報データの件数を取得し、返却する
-     * @param employee
-     * @return 日報データの件数
+     * idを条件に取得したデータをEmployeeViewのインスタンスで返却する
+     * @param id
+     * @return 取得データのインスタンス
      */
-    public long countAllMine(EmployeeView employee) {
-
-        long count = (long) em.createNamedQuery(JpaConst.Q_EMP_GET_ALL_F, Long.class)
-                .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(employee))
-                .getSingleResult();
-
-        return count;
+    public EmployeeView findOne(int id) {
+        Employee e = findOneInternal(id);
+        return EmployeeConverter.toView(e);
     }
 
 
+    /**
+     * idを条件にデータを1件取得し、Employeeのインスタンスで返却する
+     * @param id
+     * @return 取得データのインスタンス
+     */
+    private Employee findOneInternal(int id) {
+        Employee e = em.find(Employee.class, id);
+
+        return e;
+    }
+
+    
 
 
 }

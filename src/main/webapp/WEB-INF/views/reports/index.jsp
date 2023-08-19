@@ -64,5 +64,8 @@
         </div>
         <p><a href="<c:url value='?action=${actRep}&command=${commNew}' />">新規日報の登録</a></p>
 
+        <input type="hidden" name="${AttributeConst.MAIN_ID.getValue()}" value="${sessionScope.login_employee.id}" />
+        <div class="follow"><a href="<c:url value='?action=${actFow}&command=${commIdx}' />">フォロワー一覧</a></div>
+
     </c:param>
 </c:import>

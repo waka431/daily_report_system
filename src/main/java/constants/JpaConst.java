@@ -85,7 +85,7 @@ public interface JpaConst {
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
    //ログインしている従業員idを元にフォローされている従業員を取得
     String Q_EMP_GET_FOLLOW =ENTITY_FWO +".getFollowViewList";
-    String Q_EMP_GET_FOLLOW_DEF= "SELECT f FROM Follow AS f WHERE f.follower = :" + JPQL_PARM_ID;
+    String Q_EMP_GET_FOLLOW_DEF= "SELECT f FROM Follow AS f WHERE f.main = :" + JPQL_PARM_ID;
 
     //フォローしている従業員を取得
     String Q_EMP_GET_ALL_F = ENTITY_EMP + ".getFollower";

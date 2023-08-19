@@ -4,6 +4,7 @@
 <%@ page import="constants.ForwardConst" %>
 
 <c:set var="actEmp" value="${ForwardConst.ACT_EMP.getValue()}" />
+<c:set var="actFow" value="${ForwardConst.ACT_FOW.getValue()}" />
 <c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
 <c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
@@ -27,7 +28,7 @@
                         <td><c:out value="${employee.code}" /></td>
                         <td><c:out value="${employee.name}" /></td>
                         <td>
-                         <a href="<c:url value='?action=${actEmp}&command=${commShow}&id=${employee.id}' />">日報を見る</a>
+                         <a href="<c:url value='?action=${actFow}&command=${commShow}&id=${employee.id}' />">日報を見る</a>
                         </td>
                     </tr>
                 </c:forEach>

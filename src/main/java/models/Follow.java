@@ -20,7 +20,11 @@ import lombok.Setter;
 @NamedQueries({
     @NamedQuery(
             name = JpaConst.Q_EMP_GET_FOLLOW,
-            query = JpaConst.Q_EMP_GET_FOLLOW_DEF)
+            query = JpaConst.Q_EMP_GET_FOLLOW_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_EMP_GET_ALL_F,
+            query = JpaConst. Q_EMP_GET_ALL_F_DEF)
+
 })
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
 @Setter //全てのクラスフィールドについてsetterを自動生成する(Lombok)

@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor //全てのクラスフィールドを引数にもつ引数ありコンストラクタを自動生成する(Lombok)
 
 public class FollowView {
-    
+
     /**
      * id
      */
@@ -20,12 +20,12 @@ public class FollowView {
     /**
      * フォローする従業員
      */
-    private String main;
+    private Integer main;
 
     /**
      * フォローされる従業員
      */
-    private String follower;
+    private Integer follower;
 
 
 

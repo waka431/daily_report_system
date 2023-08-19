@@ -37,24 +37,26 @@ public interface JpaConst {
     String REP_COL_REACT_CREATED_AT = "react_at"; //いいね登録日時
     int REP_RAC_TRUE = 1; //いいねフラグON
     int REP_RAC_FALSE = 0; //いいねフラグOFF
-    
+
     //フォローテーブル
     String TABLE_FOLLOW ="follows";//フォローテーブル
     //フォローテーブルカラム
     String FOW_COL_ID="follow_id";
     String FOW_COL_EMP_ID="main"; //フォローする従業員のID
     String FOW_COL_SEE_ID="follower";//フォローしている従業員のID
-    
+
 
 
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
+    String ENTITY_FWO = "follow";//フォロー
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
     String JPQL_PARM_PASSWORD = "password"; //パスワード
     String JPQL_PARM_EMPLOYEE = "employee"; //従業員
+    String JPQL_PARM_ID = "main"; // ログインしている従業員Id
 
     //NamedQueryの nameとquery
     //全ての従業員をidの降順に取得する
@@ -81,6 +83,12 @@ public interface JpaConst {
     //指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+   //ログインしている従業員idを元にフォローされている従業員を取得
+    String Q_EMP_GET_FOLLOW =ENTITY_FWO +".getFollowViewList";
+    String Q_EMP_GET_FOLLOW_DEF= "SELECT f FROM Follow AS f WHERE f.follower = :" + JPQL_PARM_ID;
 
+    //フォローしている従業員を取得
+    String Q_EMP_GET_ALL_F = ENTITY_EMP + ".getFollower";
+    String Q_EMP_GET_ALL_F_DEF="SELECT e FROM Employee AS e LEFT LOINFETCH Follow.follower WHERE Follow.follower = e.id ORDER BY e.id DESC";
 
 }

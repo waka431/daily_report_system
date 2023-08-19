@@ -5,10 +5,11 @@
 <%@ page import="constants.ForwardConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
+<c:set var="actFow" value="${ForwardConst.ACT_FOW.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
 <c:set var="commRac" value="${ForwardConst. CMD_REACTION.getValue()}" />
-<c:set var="action" value="${ForwardConst.ACT_REP.getValue()}" />
+<c:set var="commFow" value="${ForwardConst. CMD_FOllOW.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -56,7 +57,7 @@
                 </tr>
             </tbody>
         </table>
-        <form method="POST" action="<c:url value='?action=${action}&command=${commRac}' />">
+        <form method="POST" action="<c:url value='?action=${actRep}&command=${commRac}' />">
         <c:if test="${sessionScope.login_employee.id != report.employee.id}">
           <br />
           <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
@@ -66,7 +67,7 @@
         </form>
 
 
-         <form method="POST" action="<c:url value='?action=${action}&command=${commRac}' />">
+         <form method="POST" action="<c:url value='?action=${actFow}&command=${commFow}' />">
           <c:if test="${sessionScope.login_employee.id != report.employee.id}">
           <br />
           <input type="hidden" name="${AttributeConst.MAIN_ID.getValue()}" value="${sessionScope.login_employee.id}" />

@@ -6,6 +6,7 @@
 <c:set var="actTop" value="${ForwardConst.ACT_TOP.getValue()}" />
 <c:set var="actEmp" value="${ForwardConst.ACT_EMP.getValue()}" />
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
+<c:set var="actFow" value="${ForwardConst.ACT_FOW.getValue()}" />
 
 <c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
@@ -39,8 +40,9 @@
                 </c:forEach>
             </tbody>
         </table>
-
-        <div class="follow"><a href="<c:url value='?action=${actRep}&command=${commShow}' />">フォロワー一覧</a></div>
+         
+        <input type="hidden" name="${AttributeConst.MAIN_ID.getValue()}" value="${sessionScope.login_employee.id}" />
+        <div class="follow"><a href="<c:url value='?action=${actFow}&command=${commIdx}' />">フォロワー一覧</a></div>
 
         <div id="pagination">
             （全 ${reports_count} 件）<br />

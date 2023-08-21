@@ -87,8 +87,4 @@ public interface JpaConst {
     String Q_EMP_GET_FOLLOW =ENTITY_FWO +".getFollowViewList";
     String Q_EMP_GET_FOLLOW_DEF= "SELECT f FROM Follow AS f WHERE f.main = :" + JPQL_PARM_ID;
 
-    //フォローしている従業員を取得
-    String Q_EMP_GET_ALL_F = ENTITY_EMP + ".getFollower";
-    String Q_EMP_GET_ALL_F_DEF="SELECT e FROM Employee AS e LEFT LOINFETCH Follow.follower WHERE Follow.follower = e.id ORDER BY e.id DESC";
-
 }

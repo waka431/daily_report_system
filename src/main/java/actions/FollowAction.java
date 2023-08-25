@@ -1,6 +1,7 @@
 package actions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -51,7 +52,7 @@ public class FollowAction extends ActionBase {
         service.follow(toNumber(getRequestParam(AttributeConst.MAIN_ID)),toNumber(getRequestParam(AttributeConst.REP_EM)));
 
             //一覧画面にリダイレクト
-        redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+        redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
     }
 
 
@@ -65,7 +66,8 @@ public class FollowAction extends ActionBase {
         //セッションからログイン中の従業員idを取得
         int mainID =toNumber(getRequestParam(AttributeConst.MAIN_ID));
         List<FollowView> ff =service.getFollowViewList(mainID);
-        List<EmployeeView> ev = null;
+        List<EmployeeView> ev=new ArrayList<EmployeeView>();
+
         for(FollowView f: ff) {
            EmployeeView e = employeeservice.findOne(f.getFollower());
            ev.add(e);
@@ -89,7 +91,7 @@ public class FollowAction extends ActionBase {
     /**
      * 一覧画面を表示する
      */
-    public void followindex() throws ServletException, IOException {
+    public void show() throws ServletException, IOException {
 
         // 以下追記
 
@@ -112,7 +114,7 @@ public class FollowAction extends ActionBase {
 
 
         //一覧画面を表示
-        forward(ForwardConst.FW_TOP_INDEX);
+        forward(ForwardConst.FW_FOW_SHOW);
     }
 
 
